@@ -9,10 +9,10 @@ Template.userlogin.events
       Session.set('user', this._id)
 
 Template.foodboard.players = ->
-  Players.find({}, {sort: {score: -1, name: 1}})
+  Venues.find({}, {sort: {score: -1, name: 1}})
 
 Template.foodboard.selected_name = ->
-  player = Players.findOne(Session.get("selected_player"))
+  player = Venues.findOne(Session.get("selected_player"))
   player && player.name
 
 Template.player.selected = ->
@@ -20,7 +20,7 @@ Template.player.selected = ->
 
 Template.foodboard.events
   'click input.inc': ->
-    Players.update(Session.get("selected_player"), {$inc: {score: 5}})
+    Venues.update(Session.get("selected_player"), {$inc: {score: 5}})
 
 Template.player.events
   'click': ->
