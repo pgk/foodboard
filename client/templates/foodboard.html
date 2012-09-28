@@ -1,0 +1,26 @@
+<template name="foodboard">
+  <div class="foodboard">
+    <table class="table table-hover">
+      {{#unless selected_name}}
+      <caption>Click a venue to select</caption>
+      {{/unless}}
+      <thead>
+        <tr>
+          <th>Venue</th>
+          <th>People</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each players}}
+          {{> player}}
+        {{/each}}
+      </tbody>
+    </table>
+  </div>
+{{#if selected_name}}
+  <div class="details">
+    <div class="name">{{selected_name}}</div>
+    <input type="button" class="inc" value="Give 5 points" />
+  </div>
+  {{/if}}
+</template>
