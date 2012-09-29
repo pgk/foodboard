@@ -17,10 +17,15 @@
       </tbody>
     </table>
   </div>
-{{#if selected_name}}
+{{#if selected_venue}}
   <div class="details">
-    <div class="name">{{selected_name}}</div>
+    <div class="name">{{selected_venue}}</div>
     <input type="button" class="inc" value="Join" />
   </div>
-  {{/if}}
+{{/if}}
+{{#if venue_id}}
+  {{#each items}}
+    {{> item}}
+  {{/each}}
+{{/if}}
 </template>
