@@ -6,7 +6,7 @@ Session.set 'item_id', null
 
 Meteor.subscribe 'venues', ->
   if not Session.get 'venue_id'
-    venue = Venues.findOne({}, {sort: {name: 1}})
+    venue = Venues.findOne {}, {sort: {name: 1}}
     Session.set 'venue_id', venue._id
 
 Meteor.autosubscribe ->
