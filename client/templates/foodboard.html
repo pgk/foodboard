@@ -1,31 +1,24 @@
 <template name="foodboard">
-  <div class="foodboard">
-    <table class="table table-hover">
-      {{#unless selected_name}}
-      <caption>Click a venue to join:</caption>
-      {{/unless}}
-      <thead>
-        <tr>
-          <th>Venue</th>
-          <th>People</th>
-        </tr>
-      </thead>
-      <tbody>
-        {{#each venues}}
-          {{> venue}}
-        {{/each}}
-      </tbody>
-    </table>
-  </div>
+<div class="foodboard row-fluid">
+{{#unless selected_venue}}
+  <div class="alert alert-info">Click a venue to join</div>
+{{/unless}}
+
 {{#if selected_venue}}
-  <div class="details">
-    <div class="name">{{selected_venue}}</div>
-    <input type="button" class="inc" value="Join" />
-  </div>
+  <h3>{{selected_venue}}:</h3>
+  {{> item_new}}
+  {{#if venue_id}}
+  <table class="table table-condensed table-hover">
+    <thead>
+      <tr><th></th><th></th><th></th></tr>
+    </thead>
+    <tbody>
+    {{#each items}}
+      {{> item}}
+    {{/each}}
+    </tbody>
+  </table>
+  {{/if}}
 {{/if}}
-{{#if venue_id}}
-  {{#each items}}
-    {{> item}}
-  {{/each}}
-{{/if}}
+</div>
 </template>
