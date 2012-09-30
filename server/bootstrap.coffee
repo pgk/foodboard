@@ -8,4 +8,5 @@ Meteor.startup ->
 			Items.insert {venue_id: strega_id, name: item, count: 0, timestamp: timestamp}
 		for item in ["Cowboy", "Godfather", "Quickie"]
 			Items.insert {venue_id: simply_id, name: item, count: 0, timestamp: timestamp}
+		Orders.insert({venue_id: strega_id, timestamp: timestamp - (time * 1000000), user_name: 'Guest'}) for time in [0..10]
 

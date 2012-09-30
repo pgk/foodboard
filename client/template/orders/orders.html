@@ -1,0 +1,16 @@
+<template name="order_new">
+<div>
+  <div class="form-inline">
+  	<span class="plus"><i class="icon-plus"></i></span>
+    <input type="text" class="input-small add-item-text" placeholder="Order">
+  </div>
+</div>
+</template>
+
+<template name="order">
+	<tr class="{{hotness}}">
+	  <td><span class="venue">{{venue_name}}</span></td>
+	  <td><span class="hour">{{hour}}</span></td>
+	  <td><span class="startedby">{{user_name}}</span></td>
+	</tr>
+</template>
