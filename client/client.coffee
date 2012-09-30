@@ -17,3 +17,7 @@ Template.foodboard.items = ->
   return {} if not venue_id
 
   Items.find venue_id: venue_id
+
+Template.item.hour = ->
+	date = new Date @.timestamp
+	date.toLocaleTimeString()

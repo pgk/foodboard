@@ -29,7 +29,7 @@ Template.venue_new.events okCancelEvents('.add-item-text'
 
 Template.item_new.events okCancelEvents('.add-item-text'
 		ok: (value) ->
-			Items.insert name: value, venue_id: Session.get('venue_id'), count: 1
+			Items.insert name: value, venue_id: Session.get('venue_id'), count: 1, timestamp: Date.now()
 			Venues.update Session.get('venue_id'), {$inc: {score: 1}}
 	)
 
