@@ -8,5 +8,5 @@ Meteor.publish 'venues', ->
 Meteor.publish 'orders', (venue_id)->
 	Orders.find venue_id: venue_id
 
-Meteor.publish 'items', (venue_id) ->
-	Items.find venue_id: venue_id
+Meteor.publish 'items', (order_id) ->
+	Items.find order_id: order_id

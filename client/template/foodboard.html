@@ -1,35 +1,14 @@
 <template name="foodboard">
 <div class="foodboard row-fluid">
-{{#unless selected_venue}}
-  <div class="alert alert-info">Click a venue to join</div>
-{{/unless}}
-
-{{#if selected_venue}}
-  <h3>{{selected_venue}}:</h3>
-  {{> order_new}}
-  <table class="table table-condensed table-hover">
-    <thead>
-      <tr><th></th><th></th><th></th><th></th></tr>
-    </thead>
-    <tbody>
-    {{#each orders}}
-      {{> order}}
-    {{/each}}
-    </tbody>
-  </table>
-  {{> item_new}}
-  {{#if venue_id}}
-  <table class="table table-condensed table-hover">
-    <thead>
-      <tr><th></th><th></th><th></th><th></th></tr>
-    </thead>
-    <tbody>
-    {{#each items}}
-      {{> item}}
-    {{/each}}
-    </tbody>
-  </table>
-  {{/if}}
-{{/if}}
+	<div class="row-fluid">
+		<div class="span3">{{> order_new}}</div>
+	</div>
+	<div class="row-fluid">
+		<table class="table table-condensed table-hover">
+	    {{#each orders}}
+	      {{> order}}
+	    {{/each}}
+	  </table>
+	</div>
 </div>
 </template>

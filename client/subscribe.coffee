@@ -9,10 +9,10 @@ Session.set 'order_id', null
 Meteor.subscribe 'venues', ->
   if not Session.get 'venue_id'
     venue = Venues.findOne {}, {sort: {name: 1}}
-    Session.set 'venue_id', venue._id
+    Session.set 'venue_id', venue._id	
 
 Meteor.autosubscribe ->
-  venue_id = Session.get 'venue_id'
   order_id = Session.get 'order_id'
-  Meteor.subscribe('items', venue_id) if venue_id?
+  venue_id = Session.get 'venue_id'
+  Meteor.subscribe('items', order_id) if order_id?
   Meteor.subscribe('orders', venue_id) if venue_id?

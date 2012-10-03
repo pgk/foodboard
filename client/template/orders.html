@@ -9,8 +9,15 @@
 
 <template name="order">
 	<tr class="{{hotness}}">
-	  <td><span class="venue">{{venue_name}}</span></td>
-	  <td><span class="hour">{{hour}}</span></td>
-	  <td><span class="startedby">{{user_name}}</span></td>
+		<td><span class="venue"><strong>{{venue_name}}:</strong> {{hour}}</span></td>
+		<td>
+			{{#if is_selected}}
+			{{> item_new}}
+		  {{#each items}}
+		    {{> item}}
+		  {{/each}}
+		  {{/if}}
+		</td>
+		<td><span class="startedby">{{user_name}}</span></td>
 	</tr>
 </template>

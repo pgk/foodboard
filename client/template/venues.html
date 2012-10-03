@@ -1,0 +1,25 @@
+<template name="venue_new">
+<div>
+  <div class="navbar-form pull-right">
+    <input type="text" class="input-small add-item-text" placeholder="Add Venue">
+  </div>
+</div>
+</template>
+
+<template name="venue">
+	<li>
+		<a>
+			<i class="icon-chevron-right"></i>
+			<span class="score badge badge-info">{{score}}</span>
+		<span class="name"> {{name}}</span>
+		</a>
+	</li>
+</template>
+
+<template name="venues_sidebar">
+<ul class="nav nav-list bs-docs-sidenav affix">
+{{#each venues}}
+  {{> venue}}
+ {{/each}}
+</ul>
+</template>

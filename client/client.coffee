@@ -16,17 +16,17 @@ Template.foodboard.venue_id = ->
 Template.navbar.venues = ->
   Venues.find {}, {sort: {score: -1, name: 1}}
 
-Template.foodboard.items = ->
-  venue_id = Session.get 'venue_id'
-  return {} if not venue_id
+Template.venues_sidebar.venues = ->
+  Venues.find {}, {sort: {score: -1, name: 1}}
 
-  Items.find venue_id: venue_id
+Template.order.items = ->
+  Items.find order_id: @._id
+
+Template.order.is_selected = ->
+	Session.get('selected_order') is @._id
 
 Template.foodboard.orders = ->
-  venue_id = Session.get 'venue_id'
-  return {} if not venue_id
-
-  Orders.find {venue_id: venue_id}, {sort: {timestamp: -1}}
+  Orders.find {}, {sort: {timestamp: -1}}
 
 Template.item.hour = hour
 Template.order.hour = hour
@@ -36,10 +36,8 @@ Template.order.venue_name = ->
 Template.order.hotness = ->
 	diff = Date.now() - @.timestamp
 	if diff <= 3000000
-		return "error"
+		return "success"
 	if diff <= 4000000
 		return "warning"
-	if diff <= 9000000
-		return "success"
 	"info"
 

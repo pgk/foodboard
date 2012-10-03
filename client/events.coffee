@@ -21,6 +21,11 @@ Template.venue.events
     Session.set "selected_venue", @._id
     Session.set "venue_id", @._id
 
+Template.order.events
+	'click': ->
+		Session.set 'selected_order', @._id
+		Session.set 'order_id', @._id
+
 Template.venue_new.events okCancelEvents('.add-item-text'
 		ok: (value) ->
 			exists = Venues.findOne({name: value})
@@ -29,12 +34,22 @@ Template.venue_new.events okCancelEvents('.add-item-text'
 
 Template.item_new.events okCancelEvents('.add-item-text'
 		ok: (value) ->
-			Items.insert name: value, venue_id: Session.get('venue_id'), count: 1, timestamp: Date.now()
+			Items.insert name: value, order_id: Session.get('order_id'), count: 1, timestamp: Date.now()
 			Venues.update Session.get('venue_id'), {$inc: {score: 1}}
 	)
 
+Template.order_new.events okCancelEvents('.add-item-text'
+		ok: (value) ->
+			Orders.insert
+				name: value
+				venue_id: Session.get('venue_id')
+				timestamp: Date.now()
+				user_name: 'Guest'
+	)
+
 Template.item.events
-  'click': -> Session.set("item_id", @._id)
+  'click': ->
+  	Session.set 'item_id', @._id
 
   'click .plus': ->
     Items.update Session.get('item_id'), {$inc: {count: 1}}
@@ -45,10 +60,13 @@ Template.item.events
     if item and item.count > 0
       Items.update Session.get('item_id'), {$inc: {count: -1}}
       Venues.update Session.get('venue_id'), {$inc: {score: -1}}
+      null
 
   'click .delete': ->
   	item = Items.findOne Session.get('item_id')
+  	order = Orders.findOne Session.get('order_id')
   	count = item.count
   	Items.remove Session.get('item_id')
   	Venues.update Session.get('venue_id'), {$inc: {score: -1 * count}}
   	Session.set 'item_id', null
+  	Session.set 'order_id', order._id
